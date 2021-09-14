@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.zykov.bankapp.databinding.FragmentAboutCurrencyBinding
+
 import com.example.zykov.bankapp.models.Items
 
 class AboutCurrencyFragment : Fragment() {
@@ -38,7 +39,6 @@ class AboutCurrencyFragment : Fragment() {
         mBinding.textName.text = mCurrentItem.Name
         mBinding.textValue.text = mCurrentItem.Value.toString()
         mBinding.textPrevious.text = mCurrentItem.Previous.toString()
-
         mViewModel = ViewModelProvider(this).get(AboutCurrencyFragmentViewModel::class.java)
     }
 
@@ -47,3 +47,4 @@ class AboutCurrencyFragment : Fragment() {
         _binding = null
     }
 }
+

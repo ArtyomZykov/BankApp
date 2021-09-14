@@ -10,7 +10,7 @@ data class AppObject(
     val PreviousURL: String,
     val Timestamp: String,
     val Valute: Valutes,
-)
+) : Serializable
 
 data class Valutes(
     val AUD: Items,

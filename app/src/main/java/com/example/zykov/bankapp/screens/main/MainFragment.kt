@@ -59,11 +59,10 @@ class MainFragment : Fragment() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-
         when (item.itemId) {
             R.id.btn_converter -> {
                 val bundle = Bundle()
-                bundle.putSerializable("list", mViewModel.mResponse.value?.Valute)
+                bundle.putSerializable("object", mViewModel.mResponse.value)
                 APP_ACTIVITY.navController.navigate(
                     R.id.action_mainFragment_to_convertFragment,
                     bundle
