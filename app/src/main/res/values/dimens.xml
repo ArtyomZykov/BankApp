@@ -6,4 +6,5 @@
     <dimen name="app_margin">16dp</dimen>
     <dimen name="app_normal_text">16sp</dimen>
     <dimen name="layout_width_for_btn_start_f">250dp</dimen>
+    <dimen name="stand_layout">16dp</dimen>
 </resources>
