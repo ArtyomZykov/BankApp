@@ -3,13 +3,17 @@ package com.example.zykov.bankapp.screens.convert
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
 import android.view.*
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.zykov.bankapp.databinding.FragmentConvertBinding
 import com.example.zykov.bankapp.models.AppObject
 import android.widget.ArrayAdapter
+import android.widget.Toast
+import android.widget.Toast.LENGTH_SHORT
 import com.example.zykov.bankapp.R
+import com.example.zykov.bankapp.utilites.APP_ACTIVITY
 import java.lang.String.format
 
 
@@ -41,29 +45,40 @@ class ConvertFragment : Fragment() {
             override fun afterTextChanged(s: Editable?) {}
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
             override fun onTextChanged(str: CharSequence?, start: Int, before: Int, count: Int) {
+                // Log.i("FragmentConvert", "onTextChanged")
                 val n: Double
                 if (str == null || str.isEmpty()) {
+                    mBinding.resultText.text = "-"
                 } else {
                     n = str.toString().toDouble()
-                    mBinding.resultText.text = format(
-                        "%.2f",
-                        n / mViewModel.getValue(mBinding.autoCompleteTextView.text.toString())
-                    ).toString()
+                    Log.i("FragmentConvert", mBinding.autoCompleteTextView.text.toString())
+                    if (mViewModel.getValue(mBinding.autoCompleteTextView.text.toString()) != 0.0) {
+                        mBinding.resultText.text = format(
+                            "%.2f",
+                            n / mViewModel.getValue(mBinding.autoCompleteTextView.text.toString())
+                        ).toString()
+                    } else {
+                        Toast.makeText(APP_ACTIVITY, "Выберите валюту", LENGTH_SHORT).show()
+                    }
                 }
             }
         })
-
         mBinding.autoCompleteTextView.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
             override fun afterTextChanged(s: Editable?) {}
             override fun onTextChanged(str: CharSequence?, start: Int, before: Int, count: Int) {
-                val n: Double = mBinding.editTextNumber.text.toString().toDouble()
+                val s: String? = mBinding.editTextNumber.text.toString()
                 if (str == null || str.isEmpty()) {
                 } else {
-                    mBinding.resultText.text = format(
-                        "%.2f",
-                        n / mViewModel.getValue(str.toString())
-                    ).toString()
+                    if (s!!.isNotEmpty() && s != null) {
+                        mBinding.resultText.text = format(
+                            "%.2f",
+                            s.toDouble()?.div(mViewModel.getValue(str.toString()))
+                        ).toString()
+                    } else {
+                        mBinding.resultText.text = "-"
+                        Toast.makeText(APP_ACTIVITY, "Выведите количество валюты", LENGTH_SHORT).show()
+                    }
                 }
             }
         })
