@@ -1,7 +1,5 @@
 package com.example.zykov.bankapp.parser.retrofit
 
-import android.util.Log
-import com.example.zykov.bankapp.parser.retrofit.RetrofitAPI
 import com.example.zykov.bankapp.utilites.BASE_URL
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory

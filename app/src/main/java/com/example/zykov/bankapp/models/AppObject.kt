@@ -1,15 +1,19 @@
 package com.example.zykov.bankapp.models
 
-import android.util.Log
+import com.google.gson.annotations.SerializedName
 import java.io.Serializable
-import java.util.*
 
 data class AppObject(
-    val Date: String,
-    val PreviousDate: String,
-    val PreviousURL: String,
-    val Timestamp: String,
-    val Valute: Valutes,
+    @SerializedName("Date")
+    val date: String,
+    @SerializedName("PreviousDate")
+    val previousDate: String,
+    @SerializedName("PreviousURL")
+    val previousURL: String,
+    @SerializedName("Timestamp")
+    val timestamp: String,
+    @SerializedName("Valute")
+    val valute: Valutes,
 ) : Serializable
 
 data class Valutes(
@@ -57,11 +61,18 @@ data class Valutes(
 }
 
 data class Items(
-    val ID: String,
-    val NumCode: String,
-    val CharCode: String,
-    val Nominal: Int,
-    val Name: String,
-    val Value: Double,
-    val Previous: Double,
+    @SerializedName("ID")
+    val id: String,
+    @SerializedName("NumCode")
+    val numCode: String,
+    @SerializedName("CharCode")
+    val charCode: String,
+    @SerializedName("Nominal")
+    val nominal: Int,
+    @SerializedName("Name")
+    val name: String,
+    @SerializedName("Value")
+    val value: Double,
+    @SerializedName("Previous")
+    val previous: Double,
 ) : Serializable

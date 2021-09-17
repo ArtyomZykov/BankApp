@@ -8,7 +8,6 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.zykov.bankapp.databinding.FragmentAboutCurrencyBinding
-
 import com.example.zykov.bankapp.models.Items
 
 class AboutCurrencyFragment : Fragment() {
@@ -32,13 +31,13 @@ class AboutCurrencyFragment : Fragment() {
     }
 
     private fun initialization() {
-        mBinding.textId.text = mCurrentItem.ID
-        mBinding.textNumCode.text = mCurrentItem.NumCode
-        mBinding.textCharCode.text = mCurrentItem.CharCode
-        mBinding.textNominal.text = mCurrentItem.Nominal.toString()
-        mBinding.textName.text = mCurrentItem.Name
-        mBinding.textValue.text = mCurrentItem.Value.toString()
-        mBinding.textPrevious.text = mCurrentItem.Previous.toString()
+        mBinding.textId.text = mCurrentItem.id
+        mBinding.textNumCode.text = mCurrentItem.numCode
+        mBinding.textCharCode.text = mCurrentItem.charCode
+        mBinding.textNominal.text = mCurrentItem.nominal.toString()
+        mBinding.textName.text = mCurrentItem.name
+        mBinding.textValue.text = mCurrentItem.value.toString()
+        mBinding.textPrevious.text = mCurrentItem.previous.toString()
         mViewModel = ViewModelProvider(this).get(AboutCurrencyFragmentViewModel::class.java)
     }
 

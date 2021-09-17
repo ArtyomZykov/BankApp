@@ -1,7 +1,6 @@
 package com.example.zykov.bankapp.screens.main
 
 import android.os.Bundle
-import android.util.Log
 import android.view.*
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -12,8 +11,7 @@ import com.example.zykov.bankapp.databinding.FragmentMainBinding
 import com.example.zykov.bankapp.models.AppObject
 import com.example.zykov.bankapp.models.Items
 import com.example.zykov.bankapp.utilites.APP_ACTIVITY
-import com.example.zykov.bankapp.parser.Repository
-import retrofit2.Response
+import com.example.zykov.bankapp.parser.retrofit.RetrofitRepository
 
 
 class MainFragment : Fragment() {
@@ -23,7 +21,6 @@ class MainFragment : Fragment() {
     private lateinit var mRecyclerView: RecyclerView
     private lateinit var mAdapter: MainAdapter
     private lateinit var mObserverList: Observer<AppObject>
-
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -43,13 +40,13 @@ class MainFragment : Fragment() {
         mAdapter = MainAdapter()
         mRecyclerView = mBinding.recyclerView
         mRecyclerView.adapter = mAdapter
-        val repository = Repository()
+        val repository = RetrofitRepository()
         val viewModelFactory = MainFragmentViewModelFactory(repository)
         mViewModel =
             ViewModelProvider(this, viewModelFactory).get(MainFragmentViewModel::class.java)
         mViewModel.getCourse()
         mObserverList = Observer {
-            mAdapter.setList(it.Valute.list!!)
+            mAdapter.setList(it.valute.list!!)
         }
         mViewModel.mResponse.observe(this, mObserverList)
     }

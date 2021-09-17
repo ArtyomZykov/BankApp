@@ -32,8 +32,8 @@ class MainAdapter : RecyclerView.Adapter<MainAdapter.MainHolder>() {
     }
 
     override fun onBindViewHolder(holder: MainHolder, position: Int) {
-        holder.textValue.text = mListNotes[position].Value.toString()
-        holder.textName.text = mListNotes[position].Name
+        holder.textValue.text = mListNotes[position].value.toString()
+        holder.textName.text = mListNotes[position].name
     }
 
     override fun getItemCount(): Int {

@@ -8,10 +8,10 @@ class ConvertFragmentViewModel(application: Application) : AndroidViewModel(appl
     lateinit var mCurrent: AppObject
 
     fun getValue(name: String): Double {
-        mCurrent.Valute.list?.forEach {
-            it.Value
-            if (it.Name == name) {
-                return it.Value
+        mCurrent.valute.list?.forEach {
+            it.value
+            if (it.name == name) {
+                return it.value
             }
         }
         return 0.0

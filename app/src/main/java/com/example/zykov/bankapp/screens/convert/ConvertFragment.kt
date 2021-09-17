@@ -21,7 +21,6 @@ class ConvertFragment : Fragment() {
     private var _binding: FragmentConvertBinding? = null
     private val mBinding get() = _binding!!
     private lateinit var mViewModel: ConvertFragmentViewModel
-    // private lateinit var mCurrent: AppObject
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -40,18 +39,14 @@ class ConvertFragment : Fragment() {
         setHasOptionsMenu(true)
         mViewModel = ViewModelProvider(this).get(ConvertFragmentViewModel::class.java)
         mViewModel.mCurrent = arguments?.getSerializable("object") as AppObject
-
         mBinding.editTextNumber.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable?) {}
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
             override fun onTextChanged(str: CharSequence?, start: Int, before: Int, count: Int) {
-                // Log.i("FragmentConvert", "onTextChanged")
-                val n: Double
                 if (str == null || str.isEmpty()) {
-                    mBinding.resultText.text = "-"
+                    mBinding.resultText.text = ""
                 } else {
-                    n = str.toString().toDouble()
-                    Log.i("FragmentConvert", mBinding.autoCompleteTextView.text.toString())
+                    val n: Double = str.toString().toDouble()
                     if (mViewModel.getValue(mBinding.autoCompleteTextView.text.toString()) != 0.0) {
                         mBinding.resultText.text = format(
                             "%.2f",
@@ -76,8 +71,9 @@ class ConvertFragment : Fragment() {
                             s.toDouble()?.div(mViewModel.getValue(str.toString()))
                         ).toString()
                     } else {
-                        mBinding.resultText.text = "-"
-                        Toast.makeText(APP_ACTIVITY, "Выведите количество валюты", LENGTH_SHORT).show()
+                        mBinding.resultText.text = ""
+                        Toast.makeText(APP_ACTIVITY, "Выведите количество валюты", LENGTH_SHORT)
+                            .show()
                     }
                 }
             }
@@ -89,7 +85,7 @@ class ConvertFragment : Fragment() {
         val arrayAdapter = ArrayAdapter(
             requireContext(),
             R.layout.dropdown_item,
-            mViewModel.mCurrent.Valute.list!!.map { it.Name })
+            mViewModel.mCurrent.valute.list!!.map { it.name })
         mBinding.autoCompleteTextView.setAdapter(arrayAdapter)
     }
 
